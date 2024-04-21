@@ -11,7 +11,7 @@ from torch.optim import AdamW
 from transformers import get_scheduler
 from tqdm.auto import tqdm
 
-mode = 2 # Mode 1 is the manual PyTorch training, mode 2 is the Trainer training
+mode = 1 # Mode 1 is the manual PyTorch training, mode 2 is the Trainer training
 pre_trained_model = "google/bert_uncased_L-2_H-128_A-2"
 
 torch.cuda.empty_cache()
@@ -128,7 +128,7 @@ else:
 print('-- Inference --')
 
 text_pos = "The weather is great in Israel today."
-text_neg = "Kill all the fucking jews over there"
+text_neg = "I hate everyone"
 text_pos_neg = [text_pos, text_neg]
 
 inputs = tokenizer(text_pos, return_tensors="pt",  padding = True, truncation = True)
