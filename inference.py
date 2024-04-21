@@ -1,11 +1,12 @@
 from transformers import AutoTokenizer
 from transformers import AutoModelForSequenceClassification
 import torch
+import params
 
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 print(device)
 
-pre_trained_model = "google/bert_uncased_L-2_H-128_A-2"
+pre_trained_model = params.model
 tokenizer = AutoTokenizer.from_pretrained(pre_trained_model, model_max_length=512)
 
 # Load the saved model

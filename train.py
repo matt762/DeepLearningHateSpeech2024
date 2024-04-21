@@ -8,8 +8,9 @@ from torch.utils.data import DataLoader
 from torch.optim import AdamW
 from transformers import get_scheduler
 from tqdm.auto import tqdm
+import params
 
-pre_trained_model = "google/bert_uncased_L-2_H-128_A-2"
+pre_trained_model = params.model
 
 tokenized_hate_small = datasets.load_from_disk('./datasets/tokenized_hate_small')
 
@@ -25,7 +26,7 @@ tokenized_hate_small_test = tokenized_hate_small['test'].shuffle(seed=42).select
 train_dataloader = DataLoader(tokenized_hate_small_train, shuffle=True, batch_size=8)
 eval_dataloader = DataLoader(tokenized_hate_small_test, batch_size=8)
 
-model = AutoModelForSequenceClassification.from_pretrained(pre_trained_model, num_labels=5)
+model = AutoModelForSequenceClassification.from_pretrained(pre_trained_model, num_labels=params.num_classes)
 
 optimizer = AdamW(model.parameters(), lr=5e-5)
 

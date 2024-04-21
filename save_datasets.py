@@ -1,8 +1,9 @@
 import datasets
 from transformers import AutoTokenizer
+import params
 
 #Tokenizer
-tokenizer  = AutoTokenizer.from_pretrained("google/bert_uncased_L-2_H-128_A-2", model_max_length=512)
+tokenizer  = AutoTokenizer.from_pretrained(params.model, model_max_length=512)
 
 def tokenize_function(examples):
     return tokenizer(examples["text"], padding="max_length", truncation=True)
@@ -19,11 +20,11 @@ hate = datasets.DatasetDict({
     'train': train_testvalid['train'],
     'test': test_valid['test'],
     'valid': test_valid['train']})
-hate_small = hate.select_columns(["text", "violence"])
-hate_small = hate_small.rename_column("violence", "label")
+hate_small = hate.select_columns(["text", params.feature])
+hate_small = hate_small.rename_column(params.feature, "label")
 
 new_features = hate_small['train'].features.copy()
-new_features["label"] = datasets.ClassLabel(num_classes=5)
+new_features["label"] = datasets.ClassLabel(num_classes=params.num_classes)
 hate_small['train'] = hate_small['train'].cast(new_features)
 
 tokenized_hate_small = hate_small.map(tokenize_function, batched=True)
