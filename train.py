@@ -24,8 +24,8 @@ if mode == 1:
     #tokenized_hate_small_train = tokenized_hate_small['train'].shuffle(seed=42)
     #tokenized_hate_small_test = tokenized_hate_small['test'].shuffle(seed=42)
     
-    tokenized_hate_small_train = tokenized_hate_small['train'].shuffle(seed=42).select(range(1000))
-    tokenized_hate_small_test = tokenized_hate_small['test'].shuffle(seed=42).select(range(1000))
+    tokenized_hate_small_train = tokenized_hate_small['train'].shuffle(seed=42).select(range(10000))
+    tokenized_hate_small_test = tokenized_hate_small['test'].shuffle(seed=42).select(range(10000))
 
     train_dataloader = DataLoader(tokenized_hate_small_train, shuffle=True, batch_size=8)
     eval_dataloader = DataLoader(tokenized_hate_small_test, batch_size=8)
@@ -48,6 +48,7 @@ if mode == 1:
     for epoch in range(num_epochs):
         for batch in train_dataloader:
             batch = {k: v.to(device) for k, v in batch.items()}
+            batch["labels"] = batch["labels"].long()  # Convert labels to LongTensor
             outputs = model(**batch)
             loss = outputs.loss
             loss.backward()
@@ -62,6 +63,7 @@ if mode == 1:
     model.eval()
     for batch in eval_dataloader:
         batch = {k: v.to(device) for k, v in batch.items()}
+        batch["labels"] = batch["labels"].long()  # Convert labels to LongTensor
         with torch.no_grad():
             outputs = model(**batch)
         logits = outputs.logits
@@ -77,7 +79,7 @@ else:
     
     print('-- Trainer training --')
     
-    model = AutoModelForSequenceClassification.from_pretrained(pre_trained_model, num_labels=2)
+    model = AutoModelForSequenceClassification.from_pretrained(pre_trained_model, num_labels=5)
     
     training_args = TrainingArguments(output_dir="test_trainer", evaluation_strategy="epoch")
     

@@ -19,16 +19,16 @@ hate = datasets.DatasetDict({
     'train': train_testvalid['train'],
     'test': test_valid['test'],
     'valid': test_valid['train']})
-hate_small = hate.select_columns(["text", "target_gender_men"])
-hate_small = hate_small.rename_column("target_gender_men", "label")
+hate_small = hate.select_columns(["text", "violence"])
+hate_small = hate_small.rename_column("violence", "label")
+
+new_features = hate_small['train'].features.copy()
+new_features["label"] = datasets.ClassLabel(num_classes=5)
+hate_small['train'] = hate_small['train'].cast(new_features)
 
 tokenized_hate_small = hate_small.map(tokenize_function, batched=True)
 tokenized_hate_small = tokenized_hate_small.remove_columns(["text"])
 tokenized_hate_small = tokenized_hate_small.rename_column("label", "labels")
-
-new_features = tokenized_hate_small['train'].features.copy()
-new_features["labels"] = datasets.ClassLabel(names=[0,1])
-tokenized_hate_small['train'] = tokenized_hate_small['train'].cast(new_features)
 
 tokenized_hate_small.set_format("torch")
 
