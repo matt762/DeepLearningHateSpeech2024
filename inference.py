@@ -10,7 +10,8 @@ pre_trained_model = params.model
 tokenizer = AutoTokenizer.from_pretrained(pre_trained_model, model_max_length=512)
 
 # Load the saved model
-model = AutoModelForSequenceClassification.from_pretrained("./model")
+print(params.model_to_load)
+model = AutoModelForSequenceClassification.from_pretrained(params.model_to_load)
 model.to(device)
 
 text = input("Enter a sentence: ")
