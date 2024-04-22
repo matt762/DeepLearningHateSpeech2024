@@ -2,7 +2,6 @@ import numpy as np
 import datasets
 import evaluate
 from transformers import AutoModelForSequenceClassification
-from transformers import TrainingArguments, Trainer
 import torch
 from torch.utils.data import DataLoader
 from torch.optim import AdamW
