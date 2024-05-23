@@ -1,0 +1,52 @@
+{
+  "builder_name": "json",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "hate_speech_offensive",
+  "dataset_size": 2904181,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/SetFit/hate_speech_offensive@d0dafd0c98ed4f90649fbb1c77d5dee7857c0d49/train.jsonl": {
+      "num_bytes": 3289819,
+      "checksum": null
+    },
+    "hf://datasets/SetFit/hate_speech_offensive@d0dafd0c98ed4f90649fbb1c77d5dee7857c0d49/test.jsonl": {
+      "num_bytes": 290831,
+      "checksum": null
+    }
+  },
+  "download_size": 3580650,
+  "features": {
+    "text": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "label": {
+      "dtype": "int64",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 6484831,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 2667979,
+      "num_examples": 22783,
+      "dataset_name": "hate_speech_offensive"
+    },
+    "test": {
+      "name": "test",
+      "num_bytes": 236202,
+      "num_examples": 2000,
+      "dataset_name": "hate_speech_offensive"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}

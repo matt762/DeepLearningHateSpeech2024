@@ -1,0 +1,62 @@
+{
+  "builder_name": "csv",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "hat_eval-relabeled",
+  "dataset_size": 1722967,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/krishan-CSE/HatEval-Relabeled@5bd9d138f49f9d937aaaa3d1ae558c4d25310937/train.csv": {
+      "num_bytes": 1131772,
+      "checksum": null
+    },
+    "hf://datasets/krishan-CSE/HatEval-Relabeled@5bd9d138f49f9d937aaaa3d1ae558c4d25310937/dev.csv": {
+      "num_bytes": 144962,
+      "checksum": null
+    },
+    "hf://datasets/krishan-CSE/HatEval-Relabeled@5bd9d138f49f9d937aaaa3d1ae558c4d25310937/test.csv": {
+      "num_bytes": 339760,
+      "checksum": null
+    }
+  },
+  "download_size": 1616494,
+  "features": {
+    "text": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "label": {
+      "dtype": "int64",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 3339461,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 1206321,
+      "num_examples": 9088,
+      "dataset_name": "hat_eval-relabeled"
+    },
+    "validation": {
+      "name": "validation",
+      "num_bytes": 154532,
+      "num_examples": 1168,
+      "dataset_name": "hat_eval-relabeled"
+    },
+    "test": {
+      "name": "test",
+      "num_bytes": 362114,
+      "num_examples": 2724,
+      "dataset_name": "hat_eval-relabeled"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
