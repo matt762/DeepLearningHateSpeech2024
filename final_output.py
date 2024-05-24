@@ -4,7 +4,6 @@ from sklearn.preprocessing import StandardScaler
 import numpy as np
 import pandas as pd
 
-# Load best hyperparameters from CSV
 def load_best_hyperparameters(csv_file):
     df = pd.read_csv(csv_file)
     best_trial_idx = df['best_val_loss'].idxmin()
@@ -12,8 +11,6 @@ def load_best_hyperparameters(csv_file):
     return best_hyperparams
 
 best_hyperparams = load_best_hyperparameters('optuna_results.csv')
-
-# Extract hyperparameters
 hidden_layers = int(best_hyperparams['hidden_layers'])
 hidden_units = int(best_hyperparams['hidden_units'])
 dropout_rate = float(best_hyperparams['dropout_rate'])
@@ -59,7 +56,7 @@ class HateSpeechScoreModel(nn.Module):
 input_dim = 9
 
 model = HateSpeechScoreModel(input_dim, hidden_layers, hidden_units, dropout_rate)
-model.load_state_dict(torch.load('trained_hate_speech_model_best.pth', map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('hate_speech_neural_network.pth', map_location=torch.device('cpu')))
 model.eval()
 
 scaler = StandardScaler()
@@ -80,8 +77,6 @@ def main():
         'sentiment', 'respect', 'insult', 'humiliate',
         'status', 'dehumanize', 'violence', 'genocide', 'attack_defend'
     ]
-
-    print("Insert input: value must be between 0 and 4:")
     for label in labels:
         while True:
             try:
